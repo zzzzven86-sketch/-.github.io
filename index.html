@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Звёзды от Трушки</title>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 50% 0%, #5b168f 0%, transparent 35%),
+                linear-gradient(160deg, #09020f, #160522 50%, #08020d);
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .app {
+            min-height: 100vh;
+            padding: 25px 18px;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a832ff, #5d00ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .username {
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .balance {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-weight: bold;
+        }
+
+        .logo {
+            text-align: center;
+            margin-top: 35px;
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(90deg, #ffffff, #d47cff, #ffffff);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo p {
+            margin-top: 8px;
+            color: #bda8c9;
+            font-size: 14px;
+        }
+
+        .card {
+            margin-top: 35px;
+            padding: 25px 20px;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 15px 50px rgba(130,0,255,0.18);
+            text-align: center;
+        }
+
+        .star {
+            font-size: 75px;
+            margin: 5px 0 15px;
+            filter: drop-shadow(0 0 20px #b329ff);
+        }
+
+        .card h2 {
+            margin: 5px 0;
+            font-size: 24px;
+        }
+
+        .card p {
+            color: #b8a9c1;
+            font-size: 14px;
+        }
+
+        .button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 17px;
+            border: 0;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #a72cff, #6c19d9);
+            color: white;
+            font-size: 17px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(147, 34, 255, 0.35);
+        }
+
+        .button:active {
+            transform: scale(0.97);
+        }
+
+        .coupon {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 14px;
+            background: rgba(0,0,0,0.3);
+            border: 1px dashed #a83cff;
+        }
+
+        .coupon-title {
+            color: #bca8c7;
+            font-size: 12px;
+            margin-bottom: 7px;
+        }
+
+        .coupon-code {
+            font-size: 21px;
+            font-weight: 900;
+            color: #df9cff;
+            letter-spacing: 1px;
+        }
+
+        .menu {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .menu-button {
+            padding: 17px 10px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #76667e;
+            font-size: 11px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <div class="profile">
+        <div class="user">
+            <div class="avatar">⭐</div>
+            <div>
+                <div class="username" id="username">Пользователь</div>
+                <div style="color:#8d7c95;font-size:12px;">Звёзды от Трушки</div>
+            </div>
+        </div>
+
+        <div class="balance">
+            ⭐ 0
+        </div>
+    </div>
+
+
+    <div class="logo">
+        <h1>ЗВЁЗДЫ ОТ ТРУШКИ</h1>
+        <p>Добро пожаловать в приложение</p>
+    </div>
+
+
+    <div class="card">
+
+        <div class="star">⭐</div>
+
+        <h2>Уникальный купон</h2>
+
+        <p>
+            Получи свой персональный случайный купон
+        </p>
+
+        <button class="button" onclick="getCoupon()">
+            🎁 ПОЛУЧИТЬ КУПОН
+        </button>
+
+        <div class="coupon" id="coupon">
+
+            <div class="coupon-title">
+                ТВОЙ УНИКАЛЬНЫЙ КОД
+            </div>
+
+            <div class="coupon-code" id="couponCode">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="menu">
+
+        <div class="menu-button">
+            ⭐ Звёзды
+        </div>
+
+        <div class="menu-button">
+            🎁 Купон
+        </div>
+
+        <div class="menu-button">
+            👤 Профиль
+        </div>
+
+        <div class="menu-button">
+            ℹ️ Помощь
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        © Звёзды от Трушки
+    </div>
+
+</div>
+
+
+<script>
+
+    const tg = window.Telegram.WebApp;
+
+    tg.ready();
+    tg.expand();
+
+
+    // Показываем имя Telegram-пользователя
+    if (tg.initDataUnsafe &&
+        tg.initDataUnsafe.user) {
+
+        const user = tg.initDataUnsafe.user;
+
+        document.getElementById("username").innerText =
+            user.first_name || "Пользователь";
+    }
+
+
+    // Генерация случайного купона
+    function getCoupon() {
+
+        const characters =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+        let code = "";
+
+        for (let i = 0; i < 8; i++) {
+
+            code += characters[
+                Math.floor(
+                    Math.random() * characters.length
+                )
+            ];
+
+        }
+
+        const coupon =
+            "TRUSHKA-" + code;
+
+        document.getElementById("couponCode")
+            .innerText = coupon;
+
+        document.getElementById("coupon")
+            .style.display = "block";
+
+        // Вибрация Telegram
+        if (tg.HapticFeedback) {
+
+            tg.HapticFeedback.notificationOccurred(
+                "success"
+            );
+
+        }
+    }
+
+</script>
+
+</body>
+</html>
