@@ -1,157 +1,166 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>TrushkaStars</title>
+<title>TrushkaStars</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<style>
+* {
+    box-sizing: border-box;
+}
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background: linear-gradient(160deg, #7c3aed, #3b0764);
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(160deg, #7c3aed, #3b0764);
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
 
-        header {
-            padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
+header {
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
 
-        .balance {
-            margin: 10px auto 20px;
-            padding: 12px;
-            max-width: 500px;
-            border-radius: 15px;
-            background: rgba(255,255,255,0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-size: 19px;
-        }
+.balance {
+    margin: 10px auto 20px;
+    padding: 12px;
+    max-width: 500px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 19px;
+}
 
-        .deposit-btn {
-            width: auto;
-            margin: 0;
-            padding: 9px 13px;
-            border-radius: 10px;
-            background: #22c55e;
-            font-size: 14px;
-        }
+.deposit-btn {
+    width: auto;
+    margin: 0;
+    padding: 9px 13px;
+    border-radius: 10px;
+    background: #22c55e;
+    font-size: 14px;
+}
 
-        .container {
-            padding: 15px;
-            max-width: 600px;
-            margin: auto;
-        }
+.container {
+    padding: 15px;
+    max-width: 600px;
+    margin: auto;
+}
 
-        button {
-            width: 90%;
-            max-width: 380px;
-            padding: 16px;
-            margin: 8px;
-            border: none;
-            border-radius: 15px;
-            background: #9333ea;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+button {
+    width: 90%;
+    max-width: 380px;
+    padding: 16px;
+    margin: 8px;
+    border: none;
+    border-radius: 15px;
+    background: #9333ea;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
 
-        button:active {
-            transform: scale(0.97);
-        }
+button:active {
+    transform: scale(0.97);
+}
 
-        .page {
-            display: none;
-        }
+.page {
+    display: none;
+}
 
-        .page.active {
-            display: block;
-        }
+.page.active {
+    display: block;
+}
 
-        .back {
-            background: #4c1d95;
-        }
+.back {
+    background: #4c1d95;
+}
 
-        .case-box,
-        .item,
-        .upgrade-box {
-            margin: 12px 0;
-            padding: 18px;
-            border-radius: 18px;
-            background: rgba(255,255,255,0.12);
-        }
+.case-box,
+.item,
+.upgrade-box {
+    margin: 12px 0;
+    padding: 18px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.12);
+}
 
-        .case-title {
-            font-size: 25px;
-            font-weight: bold;
-        }
+.case-title {
+    font-size: 25px;
+    font-weight: bold;
+}
 
-        .item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-            text-align: left;
-        }
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+}
 
-        .item-info {
-            flex: 1;
-        }
+.item-info {
+    flex: 1;
+}
 
-        .sell-btn {
-            width: auto;
-            margin: 0;
-            padding: 9px 12px;
-            background: #ef4444;
-            font-size: 14px;
-        }
+.sell-btn {
+    width: auto;
+    margin: 0;
+    padding: 9px 12px;
+    background: #ef4444;
+    font-size: 14px;
+}
 
-        .upgrade-btn {
-            background: #f59e0b;
-        }
+.upgrade-btn {
+    background: #f59e0b;
+}
 
-        .chance-list {
-            text-align: left;
-            line-height: 1.8;
-            margin-top: 15px;
-        }
+.chance-list {
+    text-align: left;
+    line-height: 1.8;
+    margin-top: 15px;
+}
 
-        .result {
-            margin: 20px 0;
-            padding: 20px;
-            border-radius: 18px;
-            background: rgba(255,255,255,0.15);
-            font-size: 20px;
-        }
+.result {
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.15);
+    font-size: 20px;
+}
 
-        .empty {
-            opacity: 0.7;
-            margin-top: 30px;
-        }
+.empty {
+    opacity: 0.7;
+    margin-top: 30px;
+}
 
-        .small {
-            opacity: 0.75;
-            font-size: 13px;
-        }
-    </style>
+.small {
+    opacity: 0.75;
+    font-size: 13px;
+}
+
+.success {
+    color: #4ade80;
+}
+
+.fail {
+    color: #f87171;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    ⭐ TrushkaStars
+⭐ TrushkaStars
 </header>
 
 <div class="balance">
@@ -166,7 +175,9 @@
 
 
 <!-- ГЛАВНАЯ -->
+
 <div id="home" class="page active">
+
     <div class="container">
 
         <button onclick="openPage('cases')">
@@ -182,11 +193,14 @@
         </button>
 
     </div>
+
 </div>
 
 
 <!-- КЕЙСЫ -->
+
 <div id="cases" class="page">
+
     <div class="container">
 
         <h1>📦 Кейсы</h1>
@@ -240,10 +254,12 @@
         </button>
 
     </div>
+
 </div>
 
 
 <!-- ПРОФИЛЬ -->
+
 <div id="profile" class="page">
 
     <div class="container">
@@ -257,10 +273,12 @@
         </button>
 
     </div>
+
 </div>
 
 
 <!-- АПГРЕЙД -->
+
 <div id="upgrade" class="page">
 
     <div class="container">
@@ -282,17 +300,29 @@
         </button>
 
     </div>
+
 </div>
 
 
 <script>
 
-let balance = 1000;
-
-let inventory = [];
+"use strict";
 
 
-/* ПРЕДМЕТЫ */
+/* =========================
+   ДАННЫЕ
+========================= */
+
+let balance = Number(localStorage.getItem("trushka_balance")) || 1000;
+
+let inventory = JSON.parse(
+    localStorage.getItem("trushka_inventory") || "[]"
+);
+
+
+/* =========================
+   ПРЕДМЕТЫ
+========================= */
 
 const caseItems = [
 
@@ -323,75 +353,112 @@ const caseItems = [
 ];
 
 
-/* АПГРЕЙД */
+/* =========================
+   АПГРЕЙДЫ
+========================= */
 
 const upgradeLevels = [
 
     {
         chance: 75,
-        multiplier: 1.50
+        multiplier: 1.25
     },
 
     {
         chance: 50,
-        multiplier: 2.00
+        multiplier: 1.5
     },
 
     {
         chance: 30,
-        multiplier: 3.3
+        multiplier: 2
     },
 
     {
         chance: 25,
-        multiplier: 4
+        multiplier: 2.5
     },
 
     {
         chance: 10,
-        multiplier: 10
+        multiplier: 5
     },
 
     {
         chance: 5,
-        multiplier: 20
+        multiplier: 10
     }
 
 ];
 
 
+/* =========================
+   ФОРМАТ ЧИСЕЛ
+========================= */
+
 function formatNumber(number) {
 
-    return number.toLocaleString("ru-RU");
+    return Number(number).toLocaleString("ru-RU");
 
 }
 
 
-/* СТРАНИЦЫ */
+/* =========================
+   СОХРАНЕНИЕ
+========================= */
 
-function openPage(page) {
+function saveData() {
 
-    document.querySelectorAll(".page").forEach(function(element) {
+    localStorage.setItem(
+        "trushka_balance",
+        balance
+    );
 
-        element.classList.remove("active");
-
-    });
-
-    document.getElementById(page).classList.add("active");
-
-    if (page === "profile") {
-        showInventory();
-    }
-
-    if (page === "upgrade") {
-        showUpgrade();
-    }
+    localStorage.setItem(
+        "trushka_inventory",
+        JSON.stringify(inventory)
+    );
 
 }
 
 
-/* БАЛАНС */
+/* =========================
+   БАЛАНС
+========================= */
 
 function updateBalance() {
 
-    document.getElementById("balance").textContent =
+    const balanceElement =
+        document.getElementById("balance");
+
+    if (balanceElement) {
+
+        balanceElement.textContent =
+            formatNumber(balance);
+
+    }
+
+    saveData();
+
+}
+
+
+/* =========================
+   СТРАНИЦЫ
+========================= */
+
+function openPage(page) {
+
+    document.querySelectorAll(".page").forEach(
+        function(element) {
+
+            element.classList.remove("active");
+
+        }
+    );
+
+
+    const target =
+        document.getElementById(page);
+
+    if (!target) {
