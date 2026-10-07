@@ -1,385 +1,218 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TrushkaStars</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
+    <title>TrushkaStars</title>
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(160deg, #6d28d9, #3b0764);
-    color: white;
-    min-height: 100vh;
-}
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-header {
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 18px;
-    background: rgba(0,0,0,.15);
-}
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #6d28d9;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
 
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-}
+        header {
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-.balance {
-    background: rgba(255,255,255,.15);
-    padding: 10px 14px;
-    border-radius: 15px;
-    font-weight: bold;
-}
+        .container {
+            padding: 20px;
+        }
 
-button {
-    border: 0;
-    cursor: pointer;
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-}
+        button {
+            width: 90%;
+            max-width: 350px;
+            padding: 18px;
+            margin: 10px;
+            border: none;
+            border-radius: 15px;
+            background: #9333ea;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
-.profile-btn {
-    background: #8b5cf6;
-    padding: 10px 14px;
-    border-radius: 14px;
-}
+        button:active {
+            transform: scale(0.97);
+        }
 
-.container {
-    padding: 25px 15px 100px;
-    max-width: 600px;
-    margin: auto;
-}
+        .page {
+            display: none;
+        }
 
-h1 {
-    text-align: center;
-    margin-bottom: 25px;
-}
+        .page.active {
+            display: block;
+        }
 
-.menu {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
+        .balance {
+            margin: 20px;
+            padding: 15px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.15);
+            font-size: 20px;
+        }
 
-.menu-card {
-    background: rgba(255,255,255,.12);
-    border-radius: 20px;
-    padding: 15px;
-    text-align: center;
-    transition: .15s;
-}
-
-.menu-card:active {
-    transform: scale(.96);
-}
-
-.menu-card img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 15px;
-    margin-bottom: 10px;
-}
-
-.menu-card button {
-    width: 100%;
-    padding: 13px;
-    border-radius: 12px;
-    background: #9333ea;
-}
-
-.page {
-    display: none;
-}
-
-.page.active {
-    display: block;
-}
-
-.back {
-    background: rgba(255,255,255,.15);
-    padding: 10px 15px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-}
-
-.case {
-    background: rgba(255,255,255,.12);
-    border-radius: 18px;
-    padding: 18px;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.case button {
-    background: #22c55e;
-    padding: 12px 25px;
-    border-radius: 12px;
-    margin-top: 10px;
-}
-
-.item {
-    background: rgba(255,255,255,.12);
-    padding: 15px;
-    border-radius: 15px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.sell {
-    background: #ef4444;
-    padding: 8px 12px;
-    border-radius: 10px;
-}
-
-.upgrade-box {
-    background: rgba(255,255,255,.12);
-    border-radius: 20px;
-    padding: 25px;
-    text-align: center;
-}
-
-.upgrade-btn {
-    background: #f59e0b;
-    padding: 14px 30px;
-    border-radius: 12px;
-    margin-top: 15px;
-}
-
-.empty {
-    text-align: center;
-    opacity: .7;
-    margin-top: 40px;
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 65px;
-    background: rgba(30, 10, 50, .95);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-footer button {
-    background: transparent;
-    opacity: .9;
-}
-</style>
+        .back {
+            background: #4c1d95;
+        }
+    </style>
 </head>
 
 <body>
 
 <header>
-    <div class="logo">⭐ TrushkaStars</div>
-
-    <div style="display:flex;gap:8px;align-items:center;">
-        <div class="balance" id="balance">⭐ 1000</div>
-        <button class="profile-btn" onclick="openPage('profile')">👤</button>
-    </div>
+    ⭐ TrushkaStars
 </header>
 
-<div class="container">
+<div class="balance">
+    Баланс: ⭐ <span id="balance">1000</span>
+</div>
 
-    <!-- ГЛАВНАЯ -->
-    <section id="home" class="page active">
-        <h1>Добро пожаловать!</h1>
+<!-- ГЛАВНАЯ -->
+<div id="home" class="page active">
+    <div class="container">
 
-        <div class="menu">
-
-            <div class="menu-card">
-                <img src="assets/cases.jpg" alt="Кейсы">
-                <button onclick="openPage('cases')">
-                    📦 Кейсы
-                </button>
-            </div>
-
-            <div class="menu-card">
-                <img src="assets/upgrade.jpg" alt="Апгрейд">
-                <button onclick="openPage('upgrade')">
-                    ⚡ Апгрейд
-                </button>
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- КЕЙСЫ -->
-    <section id="cases" class="page">
-
-        <button class="back" onclick="openPage('home')">
-            ← Назад
+        <button onclick="openPage('cases')">
+            📦 Кейсы
         </button>
 
-        <h1>📦 Кейсы</h1>
-
-        <div class="case">
-            <h2>⭐ Обычный кейс</h2>
-            <p>Цена: ⭐ 100</p>
-
-            <button onclick="openCase(100)">
-                Открыть
-            </button>
-        </div>
-
-        <div class="case">
-            <h2>💎 Премиум кейс</h2>
-            <p>Цена: ⭐ 300</p>
-
-            <button onclick="openCase(300)">
-                Открыть
-            </button>
-        </div>
-
-    </section>
-
-
-    <!-- АПГРЕЙД -->
-    <section id="upgrade" class="page">
-
-        <button class="back" onclick="openPage('home')">
-            ← Назад
+        <button onclick="openPage('upgrade')">
+            ⚡ Апгрейд
         </button>
 
-        <h1>⚡ Апгрейд</h1>
-
-        <div class="upgrade-box">
-
-            <h2>Попробовать апгрейд</h2>
-
-            <p>
-                Попробуй увеличить ценность своего предмета.
-            </p>
-
-            <button class="upgrade-btn" onclick="upgradeItem()">
-                ⚡ Апгрейд за ⭐ 100
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- ПРОФИЛЬ -->
-    <section id="profile" class="page">
-
-        <button class="back" onclick="openPage('home')">
-            ← Назад
+        <button onclick="openPage('profile')">
+            👤 Профиль
         </button>
 
-        <h1>👤 Профиль</h1>
-
-        <div id="inventory"></div>
-
-    </section>
-
+    </div>
 </div>
 
 
-<footer>
-    <button onclick="openPage('home')">🏠 Главная</button>
-    <button onclick="openPage('cases')">📦 Кейсы</button>
-    <button onclick="openPage('upgrade')">⚡ Апгрейд</button>
-    <button onclick="openPage('profile')">👤 Профиль</button>
-</footer>
+<!-- КЕЙСЫ -->
+<div id="cases" class="page">
+    <div class="container">
+
+        <h1>📦 Кейсы</h1>
+
+        <p>Тестовый кейс</p>
+        <p>Цена: ⭐ 100</p>
+
+        <button onclick="openCase()">
+            Открыть кейс
+        </button>
+
+        <br>
+
+        <button class="back" onclick="openPage('home')">
+            ← Назад
+        </button>
+
+    </div>
+</div>
+
+
+<!-- АПГРЕЙД -->
+<div id="upgrade" class="page">
+    <div class="container">
+
+        <h1>⚡ Апгрейд</h1>
+
+        <p>Это тестовый раздел.</p>
+
+        <button onclick="upgrade()">
+            Сделать апгрейд
+        </button>
+
+        <br>
+
+        <button class="back" onclick="openPage('home')">
+            ← Назад
+        </button>
+
+    </div>
+</div>
+
+
+<!-- ПРОФИЛЬ -->
+<div id="profile" class="page">
+    <div class="container">
+
+        <h1>👤 Профиль</h1>
+
+        <p id="items">
+            Предметов пока нет.
+        </p>
+
+        <button class="back" onclick="openPage('home')">
+            ← Назад
+        </button>
+
+    </div>
+</div>
 
 
 <script>
-/* =========================
-   ДАННЫЕ
-========================= */
+    let balance = 1000;
+    let items = [];
 
-let balance = Number(localStorage.getItem("balance"));
+    function openPage(page) {
 
-if (isNaN(balance)) {
-    balance = 1000;
-    localStorage.setItem("balance", balance);
-}
+        document.querySelectorAll(".page").forEach(function(element) {
+            element.classList.remove("active");
+        });
 
-let inventory = JSON.parse(
-    localStorage.getItem("inventory") || "[]"
-);
-
-
-/* =========================
-   TELEGRAM
-========================= */
-
-if (window.Telegram && window.Telegram.WebApp) {
-    window.Telegram.WebApp.ready();
-    window.Telegram.WebApp.expand();
-}
-
-
-/* =========================
-   БАЛАНС
-========================= */
-
-function updateBalance() {
-    document.getElementById("balance").innerText =
-        "⭐ " + balance;
-
-    localStorage.setItem("balance", balance);
-}
-
-
-/* =========================
-   СТРАНИЦЫ
-========================= */
-
-function openPage(pageName) {
-
-    document.querySelectorAll(".page").forEach(function(page) {
-        page.classList.remove("active");
-    });
-
-    const page = document.getElementById(pageName);
-
-    if (page) {
-        page.classList.add("active");
+        document.getElementById(page).classList.add("active");
     }
 
-    if (pageName === "profile") {
-        showInventory();
+
+    function updateBalance() {
+
+        document.getElementById("balance").textContent = balance;
     }
 
-    window.scrollTo(0, 0);
-}
 
+    function openCase() {
 
-/* =========================
-   ОТКРЫТИЕ КЕЙСА
-========================= */
+        if (balance < 100) {
+            alert("Недостаточно ⭐");
+            return;
+        }
 
-function openCase(price) {
+        balance -= 100;
 
-    if (balance < price) {
-        alert("Недостаточно ⭐");
-        return;
+        const item = "💎 Тестовый предмет";
+
+        items.push(item);
+
+        updateBalance();
+
+        document.getElementById("items").textContent =
+            "Получено: " + item;
+
+        alert("🎉 Ты получил " + item);
     }
 
-    balance -= price;
 
-    const items = [
-        {
-            name: "🟣 Purple Item",
-            price: 80
-        },
-        {
-            name: "🔵 Blue Item",
+    function upgrade() {
+
+        alert("⚡ Кнопка апгрейда работает!");
+    }
+
+
+    updateBalance();
+</script>
+
+</body>
+</html>
