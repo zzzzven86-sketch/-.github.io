@@ -2,7 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <title>Звёзды от Трушки</title>
 
@@ -18,23 +19,23 @@
             margin: 0;
             min-height: 100vh;
             background:
-                radial-gradient(circle at 50% 0%, #5b168f 0%, transparent 35%),
-                linear-gradient(160deg, #09020f, #160522 50%, #08020d);
+                radial-gradient(circle at 50% 0%, #66199b 0%, transparent 32%),
+                linear-gradient(160deg, #08020d, #170522 55%, #07020b);
             color: white;
             font-family: Arial, sans-serif;
-            overflow-x: hidden;
         }
 
         .app {
             min-height: 100vh;
-            padding: 25px 18px;
+            padding: 22px 16px 30px;
         }
+
+        /* PROFILE */
 
         .profile {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 25px;
         }
 
         .user {
@@ -44,137 +45,211 @@
         }
 
         .avatar {
-            width: 45px;
-            height: 45px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #a832ff, #5d00ff);
+            background: linear-gradient(135deg, #b735ff, #6418df);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 21px;
+            box-shadow: 0 0 20px rgba(171, 45, 255, .35);
         }
 
         .username {
             font-size: 15px;
-            font-weight: bold;
+            font-weight: 800;
         }
 
-        .balance {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.12);
-            padding: 10px 14px;
-            border-radius: 14px;
-            font-weight: bold;
+        .subname {
+            color: #8d7c96;
+            font-size: 11px;
+            margin-top: 3px;
         }
+
+        /* BALANCE */
+
+        .balance {
+            padding: 9px 13px;
+            border-radius: 13px;
+            background: rgba(255,255,255,.07);
+            border: 1px solid rgba(255,255,255,.10);
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+        /* TITLE */
 
         .logo {
             text-align: center;
-            margin-top: 35px;
+            margin-top: 34px;
         }
 
         .logo h1 {
             margin: 0;
-            font-size: 32px;
-            font-weight: 900;
-            background: linear-gradient(90deg, #ffffff, #d47cff, #ffffff);
+            font-size: 30px;
+            font-weight: 950;
+            letter-spacing: -1px;
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #e28aff,
+                #ffffff
+            );
             -webkit-background-clip: text;
             color: transparent;
         }
 
         .logo p {
-            margin-top: 8px;
-            color: #bda8c9;
-            font-size: 14px;
+            margin: 8px 0 0;
+            color: #a995af;
+            font-size: 13px;
         }
 
+        /* MAIN CARD */
+
         .card {
-            margin-top: 35px;
-            padding: 25px 20px;
-            border-radius: 25px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 15px 50px rgba(130,0,255,0.18);
-            text-align: center;
+            margin-top: 28px;
+            padding: 22px 18px;
+            border-radius: 24px;
+            background: rgba(255,255,255,.055);
+            border: 1px solid rgba(255,255,255,.09);
+            box-shadow: 0 20px 60px rgba(130,0,255,.20);
         }
 
         .star {
-            font-size: 75px;
-            margin: 5px 0 15px;
-            filter: drop-shadow(0 0 20px #b329ff);
+            text-align: center;
+            font-size: 65px;
+            filter: drop-shadow(0 0 22px #b62dff);
         }
 
         .card h2 {
-            margin: 5px 0;
-            font-size: 24px;
+            text-align: center;
+            margin: 8px 0 5px;
+            font-size: 23px;
         }
 
-        .card p {
-            color: #b8a9c1;
-            font-size: 14px;
+        .description {
+            text-align: center;
+            color: #a99aac;
+            font-size: 13px;
+            margin-bottom: 20px;
         }
+
+        /* BUTTONS */
 
         .button {
             width: 100%;
-            margin-top: 20px;
-            padding: 17px;
+            padding: 16px;
             border: 0;
             border-radius: 15px;
-            background: linear-gradient(135deg, #a72cff, #6c19d9);
             color: white;
-            font-size: 17px;
-            font-weight: 800;
+            font-size: 16px;
+            font-weight: 900;
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(147, 34, 255, 0.35);
+        }
+
+        .coupon-button {
+            background: linear-gradient(135deg, #a72cff, #6919d8);
+            box-shadow: 0 8px 25px rgba(147,34,255,.30);
+        }
+
+        .deposit-button {
+            margin-top: 11px;
+            background: linear-gradient(135deg, #7927c8, #45138a);
+            box-shadow: 0 8px 25px rgba(115,32,205,.25);
         }
 
         .button:active {
-            transform: scale(0.97);
+            transform: scale(.97);
         }
+
+        /* COUPON */
 
         .coupon {
             display: none;
-            margin-top: 20px;
-            padding: 15px;
+            margin-top: 18px;
+            padding: 14px;
+            text-align: center;
             border-radius: 14px;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,.25);
             border: 1px dashed #a83cff;
         }
 
         .coupon-title {
-            color: #bca8c7;
-            font-size: 12px;
-            margin-bottom: 7px;
+            color: #9f8da7;
+            font-size: 11px;
         }
 
         .coupon-code {
-            font-size: 21px;
-            font-weight: 900;
+            margin-top: 7px;
             color: #df9cff;
+            font-size: 20px;
+            font-weight: 900;
             letter-spacing: 1px;
         }
+
+        /* DEPOSIT */
+
+        .deposit {
+            display: none;
+            margin-top: 16px;
+            padding: 15px;
+            border-radius: 16px;
+            background: rgba(0,0,0,.25);
+        }
+
+        .deposit-title {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .amounts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+        }
+
+        .amount {
+            padding: 13px 5px;
+            border: 1px solid rgba(255,255,255,.10);
+            border-radius: 12px;
+            background: rgba(255,255,255,.06);
+            color: white;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .amount:active {
+            transform: scale(.96);
+        }
+
+        /* MENU */
 
         .menu {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 18px;
+            gap: 10px;
+            margin-top: 15px;
         }
 
         .menu-button {
-            padding: 17px 10px;
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.08);
-            background: rgba(255,255,255,0.05);
+            padding: 15px 8px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,.08);
+            background: rgba(255,255,255,.045);
             color: white;
-            font-weight: bold;
-            font-size: 14px;
+            font-size: 13px;
+            font-weight: 800;
         }
 
         .footer {
             text-align: center;
-            margin-top: 30px;
-            color: #76667e;
-            font-size: 11px;
+            margin-top: 25px;
+            color: #67586d;
+            font-size: 10px;
         }
     </style>
 </head>
@@ -183,48 +258,143 @@
 
 <div class="app">
 
+    <!-- PROFILE -->
+
     <div class="profile">
+
         <div class="user">
-            <div class="avatar">⭐</div>
-            <div>
-                <div class="username" id="username">Пользователь</div>
-                <div style="color:#8d7c95;font-size:12px;">Звёзды от Трушки</div>
+
+            <div class="avatar">
+                ⭐
             </div>
+
+            <div>
+                <div class="username" id="username">
+                    Пользователь
+                </div>
+
+                <div class="subname">
+                    Звёзды от Трушки
+                </div>
+            </div>
+
         </div>
 
-        <div class="balance">
+        <div class="balance" id="balance">
             ⭐ 0
         </div>
+
     </div>
 
+
+    <!-- TITLE -->
 
     <div class="logo">
-        <h1>ЗВЁЗДЫ ОТ ТРУШКИ</h1>
-        <p>Добро пожаловать в приложение</p>
+
+        <h1>
+            ЗВЁЗДЫ ОТ ТРУШКИ
+        </h1>
+
+        <p>
+            Твоя система звёзд и бонусов
+        </p>
+
     </div>
 
+
+    <!-- CARD -->
 
     <div class="card">
 
-        <div class="star">⭐</div>
+        <div class="star">
+            ⭐
+        </div>
 
-        <h2>Уникальный купон</h2>
+        <h2>
+            Купоны и баланс
+        </h2>
 
-        <p>
-            Получи свой персональный случайный купон
-        </p>
+        <div class="description">
+            Получай уникальные купоны и пополняй баланс
+        </div>
 
-        <button class="button" onclick="getCoupon()">
+
+        <!-- COUPON BUTTON -->
+
+        <button
+            class="button coupon-button"
+            onclick="getCoupon()">
+
             🎁 ПОЛУЧИТЬ КУПОН
+
         </button>
 
-        <div class="coupon" id="coupon">
+
+        <!-- DEPOSIT BUTTON -->
+
+        <button
+            class="button deposit-button"
+            onclick="showDeposit()">
+
+            ⭐ ПОПОЛНИТЬ БАЛАНС
+
+        </button>
+
+
+        <!-- COUPON -->
+
+        <div
+            class="coupon"
+            id="coupon">
 
             <div class="coupon-title">
                 ТВОЙ УНИКАЛЬНЫЙ КОД
             </div>
 
-            <div class="coupon-code" id="couponCode">
+            <div
+                class="coupon-code"
+                id="couponCode">
+            </div>
+
+        </div>
+
+
+        <!-- DEPOSIT -->
+
+        <div
+            class="deposit"
+            id="deposit">
+
+            <div class="deposit-title">
+                Выбери количество звёзд
+            </div>
+
+            <div class="amounts">
+
+                <button
+                    class="amount"
+                    onclick="buyStars(50)">
+                    ⭐ 50
+                </button>
+
+                <button
+                    class="amount"
+                    onclick="buyStars(100)">
+                    ⭐ 100
+                </button>
+
+                <button
+                    class="amount"
+                    onclick="buyStars(250)">
+                    ⭐ 250
+                </button>
+
+                <button
+                    class="amount"
+                    onclick="buyStars(500)">
+                    ⭐ 500
+                </button>
+
             </div>
 
         </div>
@@ -232,14 +402,16 @@
     </div>
 
 
+    <!-- MENU -->
+
     <div class="menu">
 
         <div class="menu-button">
-            ⭐ Звёзды
+            ⭐ Баланс
         </div>
 
         <div class="menu-button">
-            🎁 Купон
+            🎁 Купоны
         </div>
 
         <div class="menu-button">
@@ -268,30 +440,36 @@
     tg.expand();
 
 
-    // Показываем имя Telegram-пользователя
-    if (tg.initDataUnsafe &&
-        tg.initDataUnsafe.user) {
+    /* USER */
 
-        const user = tg.initDataUnsafe.user;
+    if (
+        tg.initDataUnsafe &&
+        tg.initDataUnsafe.user
+    ) {
 
-        document.getElementById("username").innerText =
+        const user =
+            tg.initDataUnsafe.user;
+
+        document.getElementById("username")
+            .innerText =
             user.first_name || "Пользователь";
     }
 
 
-    // Генерация случайного купона
+    /* COUPON */
+
     function getCoupon() {
 
-        const characters =
+        const chars =
             "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
         let code = "";
 
         for (let i = 0; i < 8; i++) {
 
-            code += characters[
+            code += chars[
                 Math.floor(
-                    Math.random() * characters.length
+                    Math.random() * chars.length
                 )
             ];
 
@@ -306,14 +484,50 @@
         document.getElementById("coupon")
             .style.display = "block";
 
-        // Вибрация Telegram
         if (tg.HapticFeedback) {
 
-            tg.HapticFeedback.notificationOccurred(
-                "success"
-            );
+            tg.HapticFeedback
+                .notificationOccurred("success");
 
         }
+    }
+
+
+    /* DEPOSIT MENU */
+
+    function showDeposit() {
+
+        const deposit =
+            document.getElementById("deposit");
+
+        if (deposit.style.display === "block") {
+
+            deposit.style.display = "none";
+
+        } else {
+
+            deposit.style.display = "block";
+
+        }
+    }
+
+
+    /*
+       PAYMENT
+
+       Здесь пока открывается сообщение-заглушка.
+       Настоящий Telegram Stars invoice
+       подключим через бота.
+    */
+
+    function buyStars(amount) {
+
+        tg.showAlert(
+            "Пополнение на ⭐ " +
+            amount +
+            " Stars подключим через Telegram-бота."
+        );
+
     }
 
 </script>
