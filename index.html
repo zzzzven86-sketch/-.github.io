@@ -14,7 +14,7 @@
         body {
             margin: 0;
             min-height: 100vh;
-            background: #6d28d9;
+            background: linear-gradient(160deg, #7c3aed, #3b0764);
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
@@ -26,20 +26,44 @@
             font-weight: bold;
         }
 
+        .balance {
+            margin: 10px auto 20px;
+            padding: 12px;
+            max-width: 500px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 19px;
+        }
+
+        .deposit-btn {
+            width: auto;
+            margin: 0;
+            padding: 9px 13px;
+            border-radius: 10px;
+            background: #22c55e;
+            font-size: 14px;
+        }
+
         .container {
-            padding: 20px;
+            padding: 15px;
+            max-width: 600px;
+            margin: auto;
         }
 
         button {
             width: 90%;
-            max-width: 350px;
-            padding: 18px;
-            margin: 10px;
+            max-width: 380px;
+            padding: 16px;
+            margin: 8px;
             border: none;
             border-radius: 15px;
             background: #9333ea;
             color: white;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
             cursor: pointer;
         }
@@ -56,40 +80,70 @@
             display: block;
         }
 
-        .balance {
-            margin: 20px auto;
-            padding: 12px;
-            border-radius: 15px;
-            background: rgba(255,255,255,0.15);
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            max-width: 500px;
-        }
-
-        .deposit-btn {
-            width: auto;
-            max-width: none;
-            padding: 10px 15px;
-            margin: 0;
-            border-radius: 10px;
-            background: #22c55e;
-            font-size: 15px;
-        }
-
         .back {
             background: #4c1d95;
         }
 
-        .info {
-            margin: 25px auto;
-            padding: 20px;
-            max-width: 400px;
-            border-radius: 15px;
+        .case-box,
+        .item,
+        .upgrade-box {
+            margin: 12px 0;
+            padding: 18px;
+            border-radius: 18px;
             background: rgba(255,255,255,0.12);
-            font-size: 18px;
+        }
+
+        .case-title {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .sell-btn {
+            width: auto;
+            margin: 0;
+            padding: 9px 12px;
+            background: #ef4444;
+            font-size: 14px;
+        }
+
+        .upgrade-btn {
+            background: #f59e0b;
+        }
+
+        .chance-list {
+            text-align: left;
+            line-height: 1.8;
+            margin-top: 15px;
+        }
+
+        .result {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.15);
+            font-size: 20px;
+        }
+
+        .empty {
+            opacity: 0.7;
+            margin-top: 30px;
+        }
+
+        .small {
+            opacity: 0.75;
+            font-size: 13px;
         }
     </style>
 </head>
@@ -100,7 +154,6 @@
     ⭐ TrushkaStars
 </header>
 
-<!-- БАЛАНС -->
 <div class="balance">
     <span>
         Баланс: ⭐ <span id="balance">1000</span>
@@ -114,7 +167,6 @@
 
 <!-- ГЛАВНАЯ -->
 <div id="home" class="page active">
-
     <div class="container">
 
         <button onclick="openPage('cases')">
@@ -130,61 +182,64 @@
         </button>
 
     </div>
-
 </div>
 
 
 <!-- КЕЙСЫ -->
 <div id="cases" class="page">
-
     <div class="container">
 
         <h1>📦 Кейсы</h1>
 
-        <div class="info">
-            <h2>⭐ Тестовый кейс</h2>
+        <div class="case-box">
+
+            <div class="case-title">
+                🔥 Кейс Трушки
+            </div>
 
             <p>
-                Цена: ⭐ 100
+                Бесплатный игровой кейс
             </p>
+
+            <div class="chance-list">
+
+                🗿 <b>Статуя Трушки</b><br>
+                Цена: ⭐ 11.111.111.111.111<br>
+                Шанс: <b>0,3%</b>
+
+                <br><br>
+
+                🐸 <b>Пепе Трушка</b><br>
+                Цена: ⭐ 3.000.000.000.000<br>
+                Шанс: <b>1%</b>
+
+                <br><br>
+
+                👾 <b>Глитч Пепе</b><br>
+                Цена: ⭐ 1.333.333.333.333<br>
+                Шанс: <b>3%</b>
+
+                <br><br>
+
+                🧱 <b>Деф Пепе</b><br>
+                Цена: ⭐ 1.000.000.000<br>
+                Шанс: <b>95,7%</b>
+
+            </div>
 
             <button onclick="openCase()">
-                Открыть кейс
+                🎁 Открыть кейс
             </button>
+
         </div>
+
+        <div id="caseResult"></div>
 
         <button class="back" onclick="openPage('home')">
             ← Назад
         </button>
 
     </div>
-
-</div>
-
-
-<!-- АПГРЕЙД -->
-<div id="upgrade" class="page">
-
-    <div class="container">
-
-        <h1>⚡ Апгрейд</h1>
-
-        <div class="info">
-            <p>
-                Здесь будет система апгрейда предметов.
-            </p>
-
-            <button onclick="upgrade()">
-                Сделать апгрейд
-            </button>
-        </div>
-
-        <button class="back" onclick="openPage('home')">
-            ← Назад
-        </button>
-
-    </div>
-
 </div>
 
 
@@ -195,10 +250,31 @@
 
         <h1>👤 Профиль</h1>
 
-        <div class="info">
-            <p id="items">
-                Предметов пока нет.
+        <div id="inventory"></div>
+
+        <button class="back" onclick="openPage('home')">
+            ← Назад
+        </button>
+
+    </div>
+</div>
+
+
+<!-- АПГРЕЙД -->
+<div id="upgrade" class="page">
+
+    <div class="container">
+
+        <h1>⚡ Апгрейд</h1>
+
+        <div class="upgrade-box">
+
+            <p>
+                Выбери предмет из инвентаря и шанс апгрейда.
             </p>
+
+            <div id="upgradeItems"></div>
+
         </div>
 
         <button class="back" onclick="openPage('home')">
@@ -206,104 +282,116 @@
         </button>
 
     </div>
-
 </div>
 
 
 <script>
 
-    let balance = 1000;
+let balance = 1000;
 
-    let items = [];
+let inventory = [];
 
 
-    /* ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ */
+/* ПРЕДМЕТЫ */
 
-    function openPage(page) {
+const caseItems = [
 
-        document.querySelectorAll(".page").forEach(function(element) {
+    {
+        name: "🗿 Статуя Трушки",
+        price: 11111111111111,
+        chance: 0.3
+    },
 
-            element.classList.remove("active");
+    {
+        name: "🐸 Пепе Трушка",
+        price: 3000000000000,
+        chance: 1
+    },
 
-        });
+    {
+        name: "👾 Глитч Пепе",
+        price: 1333333333333,
+        chance: 3
+    },
 
-        document.getElementById(page).classList.add("active");
-
+    {
+        name: "🧱 Деф Пепе",
+        price: 1000000000,
+        chance: 95.7
     }
 
+];
 
-    /* ОБНОВЛЕНИЕ БАЛАНСА */
 
-    function updateBalance() {
+/* АПГРЕЙД */
 
-        document.getElementById("balance").textContent = balance;
+const upgradeLevels = [
 
+    {
+        chance: 75,
+        multiplier: 1.25
+    },
+
+    {
+        chance: 50,
+        multiplier: 1.5
+    },
+
+    {
+        chance: 30,
+        multiplier: 2
+    },
+
+    {
+        chance: 25,
+        multiplier: 2.5
+    },
+
+    {
+        chance: 10,
+        multiplier: 5
+    },
+
+    {
+        chance: 5,
+        multiplier: 10
     }
 
+];
 
-    /* ПОПОЛНЕНИЕ */
 
-    function showDeposit() {
+function formatNumber(number) {
 
-        alert(
-            "Для пополнения баланса пишите менеджеру @TrushkaStars"
-        );
+    return number.toLocaleString("ru-RU");
 
+}
+
+
+/* СТРАНИЦЫ */
+
+function openPage(page) {
+
+    document.querySelectorAll(".page").forEach(function(element) {
+
+        element.classList.remove("active");
+
+    });
+
+    document.getElementById(page).classList.add("active");
+
+    if (page === "profile") {
+        showInventory();
     }
 
-
-    /* ОТКРЫТИЕ КЕЙСА */
-
-    function openCase() {
-
-        if (balance < 100) {
-
-            alert("Недостаточно ⭐");
-
-            return;
-
-        }
-
-
-        balance -= 100;
-
-
-        const item = "💎 Тестовый предмет";
-
-
-        items.push(item);
-
-
-        updateBalance();
-
-
-        document.getElementById("items").textContent =
-            "Получено: " + item;
-
-
-        alert(
-            "🎉 Ты получил " + item
-        );
-
+    if (page === "upgrade") {
+        showUpgrade();
     }
 
-
-    /* АПГРЕЙД */
-
-    function upgrade() {
-
-        alert(
-            "⚡ Кнопка апгрейда работает!"
-        );
-
-    }
+}
 
 
-    /* ЗАПУСК */
+/* БАЛАНС */
 
-    updateBalance();
+function updateBalance() {
 
-</script>
-
-</body>
-</html>
+    document.getElementById("balance").textContent =
