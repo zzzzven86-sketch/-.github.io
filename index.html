@@ -57,15 +57,39 @@
         }
 
         .balance {
-            margin: 20px;
-            padding: 15px;
+            margin: 20px auto;
+            padding: 12px;
             border-radius: 15px;
             background: rgba(255,255,255,0.15);
             font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            max-width: 500px;
+        }
+
+        .deposit-btn {
+            width: auto;
+            max-width: none;
+            padding: 10px 15px;
+            margin: 0;
+            border-radius: 10px;
+            background: #22c55e;
+            font-size: 15px;
         }
 
         .back {
             background: #4c1d95;
+        }
+
+        .info {
+            margin: 25px auto;
+            padding: 20px;
+            max-width: 400px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.12);
+            font-size: 18px;
         }
     </style>
 </head>
@@ -76,12 +100,21 @@
     ⭐ TrushkaStars
 </header>
 
+<!-- БАЛАНС -->
 <div class="balance">
-    Баланс: ⭐ <span id="balance">1000</span>
+    <span>
+        Баланс: ⭐ <span id="balance">1000</span>
+    </span>
+
+    <button class="deposit-btn" onclick="showDeposit()">
+        Пополнить
+    </button>
 </div>
+
 
 <!-- ГЛАВНАЯ -->
 <div id="home" class="page active">
+
     <div class="container">
 
         <button onclick="openPage('cases')">
@@ -97,121 +130,179 @@
         </button>
 
     </div>
+
 </div>
 
 
 <!-- КЕЙСЫ -->
 <div id="cases" class="page">
+
     <div class="container">
 
         <h1>📦 Кейсы</h1>
 
-        <p>Тестовый кейс</p>
-        <p>Цена: ⭐ 100</p>
+        <div class="info">
+            <h2>⭐ Тестовый кейс</h2>
 
-        <button onclick="openCase()">
-            Открыть кейс
-        </button>
+            <p>
+                Цена: ⭐ 100
+            </p>
 
-        <br>
+            <button onclick="openCase()">
+                Открыть кейс
+            </button>
+        </div>
 
         <button class="back" onclick="openPage('home')">
             ← Назад
         </button>
 
     </div>
+
 </div>
 
 
 <!-- АПГРЕЙД -->
 <div id="upgrade" class="page">
+
     <div class="container">
 
         <h1>⚡ Апгрейд</h1>
 
-        <p>Это тестовый раздел.</p>
+        <div class="info">
+            <p>
+                Здесь будет система апгрейда предметов.
+            </p>
 
-        <button onclick="upgrade()">
-            Сделать апгрейд
-        </button>
-
-        <br>
+            <button onclick="upgrade()">
+                Сделать апгрейд
+            </button>
+        </div>
 
         <button class="back" onclick="openPage('home')">
             ← Назад
         </button>
 
     </div>
+
 </div>
 
 
 <!-- ПРОФИЛЬ -->
 <div id="profile" class="page">
+
     <div class="container">
 
         <h1>👤 Профиль</h1>
 
-        <p id="items">
-            Предметов пока нет.
-        </p>
+        <div class="info">
+            <p id="items">
+                Предметов пока нет.
+            </p>
+        </div>
 
         <button class="back" onclick="openPage('home')">
             ← Назад
         </button>
 
     </div>
+
 </div>
 
 
 <script>
+
     let balance = 1000;
+
     let items = [];
+
+
+    /* ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ */
 
     function openPage(page) {
 
         document.querySelectorAll(".page").forEach(function(element) {
+
             element.classList.remove("active");
+
         });
 
         document.getElementById(page).classList.add("active");
+
     }
 
+
+    /* ОБНОВЛЕНИЕ БАЛАНСА */
 
     function updateBalance() {
 
         document.getElementById("balance").textContent = balance;
+
     }
 
+
+    /* ПОПОЛНЕНИЕ */
+
+    function showDeposit() {
+
+        alert(
+            "Для пополнения баланса пишите менеджеру @TrushkaStars"
+        );
+
+    }
+
+
+    /* ОТКРЫТИЕ КЕЙСА */
 
     function openCase() {
 
         if (balance < 100) {
+
             alert("Недостаточно ⭐");
+
             return;
+
         }
+
 
         balance -= 100;
 
+
         const item = "💎 Тестовый предмет";
+
 
         items.push(item);
 
+
         updateBalance();
+
 
         document.getElementById("items").textContent =
             "Получено: " + item;
 
-        alert("🎉 Ты получил " + item);
+
+        alert(
+            "🎉 Ты получил " + item
+        );
+
     }
 
+
+    /* АПГРЕЙД */
 
     function upgrade() {
 
-        alert("⚡ Кнопка апгрейда работает!");
+        alert(
+            "⚡ Кнопка апгрейда работает!"
+        );
+
     }
 
 
+    /* ЗАПУСК */
+
     updateBalance();
+
 </script>
 
 </body>
