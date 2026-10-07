@@ -6,518 +6,380 @@
 <title>TrushkaStars</title>
 
 <style>
-*{box-sizing:border-box}
-
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    color:white;
-    background:linear-gradient(160deg,#8b35d6,#43106d,#16051f);
-    min-height:100vh;
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
-button{
-    -webkit-tap-highlight-color:transparent;
-    touch-action:manipulation;
-    cursor:pointer;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(160deg, #6d28d9, #3b0764);
+    color: white;
+    min-height: 100vh;
 }
 
-.app{
-    max-width:520px;
-    min-height:100vh;
-    margin:auto;
-    padding-bottom:90px;
+header {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    background: rgba(0,0,0,.15);
 }
 
-/* HEADER */
-
-.header{
-    position:sticky;
-    top:0;
-    z-index:20;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    padding:15px;
-
-    background:rgba(20,5,30,.94);
-    backdrop-filter:blur(12px);
-
-    border-bottom:1px solid rgba(255,255,255,.1);
+.logo {
+    font-size: 24px;
+    font-weight: bold;
 }
 
-.logo{
-    font-size:23px;
-    font-weight:900;
+.balance {
+    background: rgba(255,255,255,.15);
+    padding: 10px 14px;
+    border-radius: 15px;
+    font-weight: bold;
 }
 
-.logo span{
-    color:#d08cff;
+button {
+    border: 0;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
 }
 
-.balance{
-    margin-top:5px;
-    color:#f1ddff;
+.profile-btn {
+    background: #8b5cf6;
+    padding: 10px 14px;
+    border-radius: 14px;
 }
 
-.profileBtn{
-    border:0;
-    border-radius:12px;
-    padding:11px 14px;
-
-    background:#913cff;
-    color:white;
-
-    font-weight:bold;
+.container {
+    padding: 25px 15px 100px;
+    max-width: 600px;
+    margin: auto;
 }
 
-/* PAGES */
-
-.page{
-    display:none;
-    padding:20px;
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
 }
 
-.page.active{
-    display:block;
+.menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
 }
 
-h1{
-    margin:5px 0 20px;
+.menu-card {
+    background: rgba(255,255,255,.12);
+    border-radius: 20px;
+    padding: 15px;
+    text-align: center;
+    transition: .15s;
 }
 
-/* HOME */
-
-.menu{
-    display:grid;
-    gap:18px;
+.menu-card:active {
+    transform: scale(.96);
 }
 
-.menuCard{
-    width:100%;
-    padding:0;
-    overflow:hidden;
-
-    border:1px solid rgba(255,255,255,.13);
-    border-radius:20px;
-
-    background:#32134f;
-    color:white;
-
-    box-shadow:0 10px 30px rgba(0,0,0,.3);
+.menu-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 10px;
 }
 
-.menuCard img{
-    width:100%;
-    height:240px;
-    display:block;
-    object-fit:cover;
+.menu-card button {
+    width: 100%;
+    padding: 13px;
+    border-radius: 12px;
+    background: #9333ea;
 }
 
-.menuTitle{
-    padding:16px;
-    font-size:23px;
-    font-weight:900;
+.page {
+    display: none;
 }
 
-/* BACK */
-
-.back{
-    border:0;
-    border-radius:10px;
-    padding:10px 15px;
-
-    background:#7130b5;
-    color:white;
-    font-weight:bold;
+.page.active {
+    display: block;
 }
 
-/* CASES */
-
-.cases{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
+.back {
+    background: rgba(255,255,255,.15);
+    padding: 10px 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
 }
 
-.case{
-    padding:12px;
-
-    border-radius:17px;
-
-    background:rgba(255,255,255,.09);
-    border:1px solid rgba(255,255,255,.1);
-
-    text-align:center;
+.case {
+    background: rgba(255,255,255,.12);
+    border-radius: 18px;
+    padding: 18px;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
-.caseIcon{
-    height:120px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    border-radius:14px;
-
-    background:rgba(140,50,230,.25);
-
-    font-size:60px;
+.case button {
+    background: #22c55e;
+    padding: 12px 25px;
+    border-radius: 12px;
+    margin-top: 10px;
 }
 
-.case h3{
-    margin-bottom:5px;
+.item {
+    background: rgba(255,255,255,.12);
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.price{
-    color:#e2c5ff;
-    margin-bottom:12px;
+.sell {
+    background: #ef4444;
+    padding: 8px 12px;
+    border-radius: 10px;
 }
 
-.open{
-    width:100%;
-
-    padding:12px;
-
-    border:0;
-    border-radius:11px;
-
-    background:linear-gradient(135deg,#a855f7,#6d28d9);
-
-    color:white;
-    font-weight:bold;
+.upgrade-box {
+    background: rgba(255,255,255,.12);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
 }
 
-/* PROFILE */
-
-.profileCard{
-    padding:20px;
-
-    border-radius:20px;
-
-    background:rgba(255,255,255,.09);
-
-    text-align:center;
+.upgrade-btn {
+    background: #f59e0b;
+    padding: 14px 30px;
+    border-radius: 12px;
+    margin-top: 15px;
 }
 
-.avatar{
-    font-size:60px;
+.empty {
+    text-align: center;
+    opacity: .7;
+    margin-top: 40px;
 }
 
-.inventory{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 65px;
+    background: rgba(30, 10, 50, .95);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.item{
-    padding:12px;
-
-    border-radius:16px;
-
-    background:rgba(255,255,255,.09);
-
-    border:1px solid rgba(255,255,255,.1);
-}
-
-.itemIcon{
-    height:100px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    border-radius:12px;
-
-    background:rgba(130,50,230,.25);
-
-    font-size:55px;
-}
-
-.sell{
-    width:100%;
-    padding:10px;
-
-    border:0;
-    border-radius:10px;
-
-    background:#22c55e;
-    color:white;
-
-    font-weight:bold;
-}
-
-/* UPGRADE */
-
-.upgradeImage{
-    width:100%;
-    max-height:300px;
-
-    object-fit:cover;
-
-    border-radius:18px;
-}
-
-.upgradeBox{
-    margin-top:15px;
-    padding:18px;
-
-    border-radius:18px;
-
-    background:rgba(255,255,255,.09);
-}
-
-.upgradeBtn{
-    width:100%;
-    padding:13px;
-
-    border:0;
-    border-radius:12px;
-
-    background:#933cff;
-
-    color:white;
-    font-weight:bold;
-}
-
-/* BOTTOM */
-
-.bottom{
-    position:fixed;
-    bottom:0;
-    left:50%;
-
-    transform:translateX(-50%);
-
-    width:min(520px,100%);
-
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-
-    padding:8px;
-
-    background:rgba(20,5,30,.97);
-
-    border-top:1px solid rgba(255,255,255,.12);
-
-    z-index:50;
-}
-
-.bottom button{
-    border:0;
-    background:transparent;
-
-    color:white;
-
-    padding:7px 2px;
-
-    font-size:20px;
-}
-
-.bottom span{
-    display:block;
-    font-size:11px;
-    margin-top:3px;
-}
-
-/* MODAL */
-
-.modal{
-    position:fixed;
-    inset:0;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    padding:20px;
-
-    background:rgba(0,0,0,.78);
-
-    z-index:100;
-}
-
-.modal.hidden{
-    display:none;
-}
-
-.modalBox{
-    width:100%;
-    max-width:380px;
-
-    padding:25px;
-
-    border-radius:22px;
-
-    background:#2b0d46;
-
-    text-align:center;
-}
-
-.winIcon{
-    font-size:80px;
-}
-
-.modalButton{
-    width:100%;
-    padding:13px;
-
-    border:0;
-    border-radius:12px;
-
-    background:#913cff;
-
-    color:white;
-    font-weight:bold;
-}
-
-@media(max-width:380px){
-    .cases,
-    .inventory{
-        grid-template-columns:1fr;
-    }
+footer button {
+    background: transparent;
+    opacity: .9;
 }
 </style>
 </head>
 
-
 <body>
 
-<div class="app">
+<header>
+    <div class="logo">⭐ TrushkaStars</div>
 
-<!-- HEADER -->
-
-<header class="header">
-
-    <div>
-        <div class="logo">
-            Trushka<span>Stars</span>
-        </div>
-
-        <div class="balance">
-            ⭐ <span id="balance">1000</span>
-        </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+        <div class="balance" id="balance">⭐ 1000</div>
+        <button class="profile-btn" onclick="openPage('profile')">👤</button>
     </div>
-
-    <button
-        class="profileBtn"
-        id="profileTop">
-        👤 Профиль
-    </button>
-
 </header>
 
+<div class="container">
 
-<!-- HOME -->
+    <!-- ГЛАВНАЯ -->
+    <section id="home" class="page active">
+        <h1>Добро пожаловать!</h1>
 
-<section
-    class="page active"
-    id="home">
+        <div class="menu">
 
-    <h1>Главное меню</h1>
-
-    <div class="menu">
-
-        <button
-            class="menuCard"
-            id="casesButton">
-
-            <img
-                src="assets/cases.jpg"
-                alt="Кейсы">
-
-            <div class="menuTitle">
-                🎁 КЕЙСЫ
+            <div class="menu-card">
+                <img src="assets/cases.jpg" alt="Кейсы">
+                <button onclick="openPage('cases')">
+                    📦 Кейсы
+                </button>
             </div>
 
-        </button>
-
-
-        <button
-            class="menuCard"
-            id="upgradeButton">
-
-            <img
-                src="assets/upgrade.jpg"
-                alt="Апгрейд">
-
-            <div class="menuTitle">
-                ⬆️ АПГРЕЙД
+            <div class="menu-card">
+                <img src="assets/upgrade.jpg" alt="Апгрейд">
+                <button onclick="openPage('upgrade')">
+                    ⚡ Апгрейд
+                </button>
             </div>
 
+        </div>
+    </section>
+
+
+    <!-- КЕЙСЫ -->
+    <section id="cases" class="page">
+
+        <button class="back" onclick="openPage('home')">
+            ← Назад
         </button>
 
-    </div>
-
-</section>
-
-
-<!-- CASES -->
-
-<section
-    class="page"
-    id="cases">
-
-    <button
-        class="back"
-        id="backCases">
-        ← Назад
-    </button>
-
-    <h1>🎁 Кейсы</h1>
-
-    <div class="cases">
+        <h1>📦 Кейсы</h1>
 
         <div class="case">
+            <h2>⭐ Обычный кейс</h2>
+            <p>Цена: ⭐ 100</p>
 
-            <div class="caseIcon">
-                🎁
-            </div>
+            <button onclick="openCase(100)">
+                Открыть
+            </button>
+        </div>
 
-            <h3>Обычный</h3>
+        <div class="case">
+            <h2>💎 Премиум кейс</h2>
+            <p>Цена: ⭐ 300</p>
 
-            <div class="price">
-                100 ⭐
-            </div>
+            <button onclick="openCase(300)">
+                Открыть
+            </button>
+        </div>
 
-            <button
-                class="open"
-                data-price="100"
-                data-case="Обычный кейс">
-                ОТКРЫТЬ
+    </section>
+
+
+    <!-- АПГРЕЙД -->
+    <section id="upgrade" class="page">
+
+        <button class="back" onclick="openPage('home')">
+            ← Назад
+        </button>
+
+        <h1>⚡ Апгрейд</h1>
+
+        <div class="upgrade-box">
+
+            <h2>Попробовать апгрейд</h2>
+
+            <p>
+                Попробуй увеличить ценность своего предмета.
+            </p>
+
+            <button class="upgrade-btn" onclick="upgradeItem()">
+                ⚡ Апгрейд за ⭐ 100
             </button>
 
         </div>
 
-
-        <div class="case">
-
-            <div class="caseIcon">
-                💎
-            </div>
-
-            <h3>Премиум</h3>
-
-            <div class="price">
-                250 ⭐
-            </div>
-
-            <button
-                class="open"
-                data-price="250"
-                data-case="Премиум кейс">
-                ОТКРЫТЬ
-            </button>
-
-        </div>
+    </section>
 
 
-        <div class="case">
+    <!-- ПРОФИЛЬ -->
+    <section id="profile" class="page">
 
-            <div class="caseIcon">
-                🔥
-            </div>
+        <button class="back" onclick="openPage('home')">
+            ← Назад
+        </button>
 
-            <h
+        <h1>👤 Профиль</h1>
+
+        <div id="inventory"></div>
+
+    </section>
+
+</div>
+
+
+<footer>
+    <button onclick="openPage('home')">🏠 Главная</button>
+    <button onclick="openPage('cases')">📦 Кейсы</button>
+    <button onclick="openPage('upgrade')">⚡ Апгрейд</button>
+    <button onclick="openPage('profile')">👤 Профиль</button>
+</footer>
+
+
+<script>
+/* =========================
+   ДАННЫЕ
+========================= */
+
+let balance = Number(localStorage.getItem("balance"));
+
+if (isNaN(balance)) {
+    balance = 1000;
+    localStorage.setItem("balance", balance);
+}
+
+let inventory = JSON.parse(
+    localStorage.getItem("inventory") || "[]"
+);
+
+
+/* =========================
+   TELEGRAM
+========================= */
+
+if (window.Telegram && window.Telegram.WebApp) {
+    window.Telegram.WebApp.ready();
+    window.Telegram.WebApp.expand();
+}
+
+
+/* =========================
+   БАЛАНС
+========================= */
+
+function updateBalance() {
+    document.getElementById("balance").innerText =
+        "⭐ " + balance;
+
+    localStorage.setItem("balance", balance);
+}
+
+
+/* =========================
+   СТРАНИЦЫ
+========================= */
+
+function openPage(pageName) {
+
+    document.querySelectorAll(".page").forEach(function(page) {
+        page.classList.remove("active");
+    });
+
+    const page = document.getElementById(pageName);
+
+    if (page) {
+        page.classList.add("active");
+    }
+
+    if (pageName === "profile") {
+        showInventory();
+    }
+
+    window.scrollTo(0, 0);
+}
+
+
+/* =========================
+   ОТКРЫТИЕ КЕЙСА
+========================= */
+
+function openCase(price) {
+
+    if (balance < price) {
+        alert("Недостаточно ⭐");
+        return;
+    }
+
+    balance -= price;
+
+    const items = [
+        {
+            name: "🟣 Purple Item",
+            price: 80
+        },
+        {
+            name: "🔵 Blue Item",
