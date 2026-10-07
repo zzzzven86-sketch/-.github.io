@@ -1,432 +1,650 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Звёзды от Трушки</title>
+<title>Звёзды от Трушки</title>
 
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background:
-                radial-gradient(circle at 50% 0%, #66199b 0%, transparent 32%),
-                linear-gradient(160deg, #08020d, #170522 55%, #07020b);
-            color: white;
-            font-family: Arial, sans-serif;
-        }
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 50% 20%, #3d145f 0%, transparent 35%),
+        radial-gradient(circle at 20% 80%, #170b2c 0%, transparent 40%),
+        #07030d;
+    color: white;
+    overflow-x: hidden;
+}
 
-        .app {
-            min-height: 100vh;
-            padding: 22px 16px 30px;
-        }
+.app {
+    width: 100%;
+    min-height: 100vh;
+    padding: 25px 18px;
+}
 
-        /* PROFILE */
+/* HEADER */
 
-        .profile {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+.header {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 35px;
+}
 
-        .user {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+.logo {
+    font-size: 27px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 
-        .avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #b735ff, #6418df);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 21px;
-            box-shadow: 0 0 20px rgba(171, 45, 255, .35);
-        }
+    background: linear-gradient(
+        90deg,
+        #b86cff,
+        #ffffff,
+        #a64dff
+    );
 
-        .username {
-            font-size: 15px;
-            font-weight: 800;
-        }
+    -webkit-background-clip: text;
+    color: transparent;
 
-        .subname {
-            color: #8d7c96;
-            font-size: 11px;
-            margin-top: 3px;
-        }
+    text-shadow:
+        0 0 15px rgba(171, 75, 255, .5);
+}
 
-        /* BALANCE */
+/* CASE CARD */
 
-        .balance {
-            padding: 9px 13px;
-            border-radius: 13px;
-            background: rgba(255,255,255,.07);
-            border: 1px solid rgba(255,255,255,.10);
-            font-weight: 800;
-            font-size: 13px;
-        }
+.case-card {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    margin: 0 auto;
 
-        /* TITLE */
+    padding: 30px 20px 25px;
 
-        .logo {
-            text-align: center;
-            margin-top: 34px;
-        }
+    border-radius: 25px;
 
-        .logo h1 {
-            margin: 0;
-            font-size: 30px;
-            font-weight: 950;
-            letter-spacing: -1px;
-            background: linear-gradient(
-                90deg,
-                #ffffff,
-                #e28aff,
-                #ffffff
-            );
-            -webkit-background-clip: text;
-            color: transparent;
-        }
+    background:
+        linear-gradient(
+            145deg,
+            rgba(90, 30, 140, .45),
+            rgba(20, 8, 35, .95)
+        );
 
-        .logo p {
-            margin: 8px 0 0;
-            color: #a995af;
-            font-size: 13px;
-        }
+    border: 1px solid rgba(190, 100, 255, .4);
 
-        /* MAIN CARD */
+    box-shadow:
+        0 0 35px rgba(130, 40, 255, .25),
+        inset 0 0 30px rgba(150, 60, 255, .08);
+}
 
-        .card {
-            margin-top: 28px;
-            padding: 22px 18px;
-            border-radius: 24px;
-            background: rgba(255,255,255,.055);
-            border: 1px solid rgba(255,255,255,.09);
-            box-shadow: 0 20px 60px rgba(130,0,255,.20);
-        }
+.case-title {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 900;
+    margin-bottom: 5px;
+}
 
-        .star {
-            text-align: center;
-            font-size: 65px;
-            filter: drop-shadow(0 0 22px #b62dff);
-        }
+.case-subtitle {
+    text-align: center;
+    color: #b99acb;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
 
-        .card h2 {
-            text-align: center;
-            margin: 8px 0 5px;
-            font-size: 23px;
-        }
+/* CASE IMAGE */
 
-        .description {
-            text-align: center;
-            color: #a99aac;
-            font-size: 13px;
-            margin-bottom: 20px;
-        }
+.case-image {
+    width: 210px;
+    height: 210px;
 
-        /* BUTTONS */
+    margin: 0 auto 25px;
 
-        .button {
-            width: 100%;
-            padding: 16px;
-            border: 0;
-            border-radius: 15px;
-            color: white;
-            font-size: 16px;
-            font-weight: 900;
-            cursor: pointer;
-        }
+    border-radius: 30px;
 
-        .coupon-button {
-            background: linear-gradient(135deg, #a72cff, #6919d8);
-            box-shadow: 0 8px 25px rgba(147,34,255,.30);
-        }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        .deposit-button {
-            margin-top: 11px;
-            background: linear-gradient(135deg, #7927c8, #45138a);
-            box-shadow: 0 8px 25px rgba(115,32,205,.25);
-        }
+    font-size: 100px;
 
-        .button:active {
-            transform: scale(.97);
-        }
+    background:
+        radial-gradient(
+            circle,
+            rgba(190, 80, 255, .4),
+            rgba(30, 8, 50, .9)
+        );
 
-        /* COUPON */
+    border: 1px solid rgba(205, 120, 255, .45);
 
-        .coupon {
-            display: none;
-            margin-top: 18px;
-            padding: 14px;
-            text-align: center;
-            border-radius: 14px;
-            background: rgba(0,0,0,.25);
-            border: 1px dashed #a83cff;
-        }
+    box-shadow:
+        0 0 40px rgba(168, 67, 255, .4);
 
-        .coupon-title {
-            color: #9f8da7;
-            font-size: 11px;
-        }
+    transition: .3s;
+}
 
-        .coupon-code {
-            margin-top: 7px;
-            color: #df9cff;
-            font-size: 20px;
-            font-weight: 900;
-            letter-spacing: 1px;
-        }
+.case-image.opening {
+    animation: caseShake .15s infinite alternate;
+}
 
-        /* DEPOSIT */
+@keyframes caseShake {
+    from {
+        transform: rotate(-3deg) scale(1);
+    }
 
-        .deposit {
-            display: none;
-            margin-top: 16px;
-            padding: 15px;
-            border-radius: 16px;
-            background: rgba(0,0,0,.25);
-        }
+    to {
+        transform: rotate(3deg) scale(1.04);
+    }
+}
 
-        .deposit-title {
-            text-align: center;
-            font-size: 14px;
-            font-weight: 800;
-            margin-bottom: 12px;
-        }
+/* PRICE */
 
-        .amounts {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 9px;
-        }
+.case-price {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
 
-        .amount {
-            padding: 13px 5px;
-            border: 1px solid rgba(255,255,255,.10);
-            border-radius: 12px;
-            background: rgba(255,255,255,.06);
-            color: white;
-            font-weight: 800;
-            cursor: pointer;
-        }
+.case-price span {
+    color: #d477ff;
+}
 
-        .amount:active {
-            transform: scale(.96);
-        }
+/* BUTTON */
 
-        /* MENU */
+.open-button {
+    width: 100%;
+    height: 58px;
 
-        .menu {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 15px;
-        }
+    border: none;
+    border-radius: 17px;
 
-        .menu-button {
-            padding: 15px 8px;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,.08);
-            background: rgba(255,255,255,.045);
-            color: white;
-            font-size: 13px;
-            font-weight: 800;
-        }
+    background:
+        linear-gradient(
+            90deg,
+            #8e32d8,
+            #c64cff
+        );
 
-        .footer {
-            text-align: center;
-            margin-top: 25px;
-            color: #67586d;
-            font-size: 10px;
-        }
-    </style>
+    color: white;
+
+    font-size: 17px;
+    font-weight: 900;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px rgba(160, 50, 255, .3);
+
+    transition: .2s;
+}
+
+.open-button:active {
+    transform: scale(.97);
+}
+
+.open-button:disabled {
+    opacity: .55;
+}
+
+/* ITEMS */
+
+.items-title {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 15px;
+
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+
+    padding: 12px;
+
+    border-radius: 15px;
+
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.item-icon {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: rgba(150,60,220,.15);
+
+    font-size: 29px;
+
+    margin-right: 12px;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.item-name {
+    font-weight: 900;
+    font-size: 14px;
+}
+
+.item-chance {
+    color: #b788c9;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.item-price {
+    text-align: right;
+    font-size: 12px;
+    color: #d778ff;
+    font-weight: 800;
+}
+
+/* RESULT */
+
+.result-screen {
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(5, 1, 10, .92);
+
+    z-index: 100;
+}
+
+.result-screen.show {
+    display: flex;
+}
+
+.result-box {
+    width: 100%;
+    max-width: 380px;
+
+    padding: 30px 20px;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #29103d,
+            #0e0617
+        );
+
+    border: 1px solid rgba(190,80,255,.5);
+
+    box-shadow:
+        0 0 60px rgba(160,50,255,.35);
+
+    animation: resultAppear .45s ease;
+}
+
+@keyframes resultAppear {
+    from {
+        transform: scale(.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.result-label {
+    color: #b89bc5;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.result-icon {
+    font-size: 105px;
+
+    margin: 10px 0;
+
+    animation: resultGlow 1s infinite alternate;
+}
+
+@keyframes resultGlow {
+    from {
+        transform: scale(1);
+        filter: drop-shadow(0 0 10px #a744ff);
+    }
+
+    to {
+        transform: scale(1.08);
+        filter: drop-shadow(0 0 30px #d36cff);
+    }
+}
+
+.result-name {
+    font-size: 25px;
+    font-weight: 900;
+    margin-top: 5px;
+}
+
+.result-chance {
+    margin-top: 8px;
+    color: #bd8bce;
+}
+
+.result-value {
+    margin-top: 15px;
+    color: #d16bff;
+    font-weight: 900;
+}
+
+.close-button {
+    width: 100%;
+    height: 52px;
+
+    margin-top: 25px;
+
+    border: none;
+    border-radius: 15px;
+
+    background: #24102f;
+    color: white;
+
+    font-weight: 900;
+    font-size: 15px;
+}
+
+/* SPIN */
+
+.spin-screen {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(4,1,8,.94);
+
+    z-index: 90;
+}
+
+.spin-screen.show {
+    display: flex;
+}
+
+.spin-box {
+    text-align: center;
+}
+
+.spin-title {
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 25px;
+}
+
+.spin-case {
+    width: 190px;
+    height: 190px;
+
+    border-radius: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 85px;
+
+    background:
+        radial-gradient(
+            circle,
+            #7c2eb0,
+            #180823
+        );
+
+    box-shadow:
+        0 0 70px rgba(175,60,255,.6);
+
+    animation: spinCase .35s infinite linear;
+}
+
+@keyframes spinCase {
+    0% {
+        transform: rotateY(0deg) rotateZ(-3deg);
+    }
+
+    50% {
+        transform: rotateY(180deg) rotateZ(3deg);
+    }
+
+    100% {
+        transform: rotateY(360deg) rotateZ(-3deg);
+    }
+}
+
+/* DESKTOP */
+
+@media (min-width: 600px) {
+    .app {
+        max-width: 500px;
+        margin: auto;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <div class="app">
 
-    <!-- PROFILE -->
-
-    <div class="profile">
-
-        <div class="user">
-
-            <div class="avatar">
-                ⭐
-            </div>
-
-            <div>
-                <div class="username" id="username">
-                    Пользователь
-                </div>
-
-                <div class="subname">
-                    Звёзды от Трушки
-                </div>
-            </div>
-
-        </div>
-
-        <div class="balance" id="balance">
-            ⭐ 0
-        </div>
-
+    <div class="header">
+        <div class="logo">ЗВЁЗДЫ ОТ ТРУШКИ</div>
     </div>
 
+    <div class="case-card">
 
-    <!-- TITLE -->
-
-    <div class="logo">
-
-        <h1>
-            ЗВЁЗДЫ ОТ ТРУШКИ
-        </h1>
-
-        <p>
-            Твоя система звёзд и бонусов
-        </p>
-
-    </div>
-
-
-    <!-- CARD -->
-
-    <div class="card">
-
-        <div class="star">
-            ⭐
+        <div class="case-title">
+            Кейс Трушки
         </div>
 
-        <h2>
-            Купоны и баланс
-        </h2>
-
-        <div class="description">
-            Получай уникальные купоны и пополняй баланс
+        <div class="case-subtitle">
+            Открой кейс и получи один из предметов
         </div>
 
+        <div class="case-image" id="caseImage">
+            🎁
+        </div>
 
-        <!-- COUPON BUTTON -->
+        <div class="case-price">
+            Цена кейса:
+            <span>200,000,000,000 ⭐</span>
+        </div>
 
-        <button
-            class="button coupon-button"
-            onclick="getCoupon()">
-
-            🎁 ПОЛУЧИТЬ КУПОН
-
+        <button class="open-button" id="openButton" onclick="openCase()">
+            ОТКРЫТЬ КЕЙС
         </button>
 
+        <div class="items-title">
+            Содержимое кейса
+        </div>
 
-        <!-- DEPOSIT BUTTON -->
+        <div class="items">
 
-        <button
-            class="button deposit-button"
-            onclick="showDeposit()">
+            <div class="item">
 
-            ⭐ ПОПОЛНИТЬ БАЛАНС
+                <div class="item-icon">
+                    👾
+                </div>
 
+                <div class="item-info">
+                    <div class="item-name">
+                        Глитч Пепе
+                    </div>
+
+                    <div class="item-chance">
+                        Шанс: 1%
+                    </div>
+                </div>
+
+                <div class="item-price">
+                    3.5 ТРЛН ⭐
+                </div>
+
+            </div>
+
+
+            <div class="item">
+
+                <div class="item-icon">
+                    🐸
+                </div>
+
+                <div class="item-info">
+                    <div class="item-name">
+                        Пепе Трушка
+                    </div>
+
+                    <div class="item-chance">
+                        Шанс: 5%
+                    </div>
+                </div>
+
+                <div class="item-price">
+                    1 ТРЛН ⭐
+                </div>
+
+            </div>
+
+
+            <div class="item">
+
+                <div class="item-icon">
+                    🗿
+                </div>
+
+                <div class="item-info">
+                    <div class="item-name">
+                        Статуэтка Трушки
+                    </div>
+
+                    <div class="item-chance">
+                        Шанс: 24%
+                    </div>
+                </div>
+
+                <div class="item-price">
+                    250 МЛРД ⭐
+                </div>
+
+            </div>
+
+
+            <div class="item">
+
+                <div class="item-icon">
+                    🐸
+                </div>
+
+                <div class="item-info">
+                    <div class="item-name">
+                        Пепе Дроздик
+                    </div>
+
+                    <div class="item-chance">
+                        Шанс: 70%
+                    </div>
+                </div>
+
+                <div class="item-price">
+                    5 МЛРД ⭐
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- АНИМАЦИЯ ОТКРЫТИЯ -->
+
+<div class="spin-screen" id="spinScreen">
+
+    <div class="spin-box">
+
+        <div class="spin-title">
+            ОТКРЫВАЕМ КЕЙС...
+        </div>
+
+        <div class="spin-case">
+            🎁
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- РЕЗУЛЬТАТ -->
+
+<div class="result-screen" id="resultScreen">
+
+    <div class="result-box">
+
+        <div class="result-label">
+            ТЕБЕ ВЫПАЛО
+        </div>
+
+        <div class="result-icon" id="resultIcon">
+            🐸
+        </div>
+
+        <div class="result-name" id="resultName">
+            Пепе Дроздик
+        </div>
+
+        <div class="result-chance" id="resultChance">
+            Шанс: 70%
+        </div>
+
+        <div class="result-value" id="resultValue">
+            5,000,000,000 ⭐
+        </div>
+
+        <button class="close-button" onclick="closeResult()">
+            ЗАБРАТЬ
         </button>
 
-
-        <!-- COUPON -->
-
-        <div
-            class="coupon"
-            id="coupon">
-
-            <div class="coupon-title">
-                ТВОЙ УНИКАЛЬНЫЙ КОД
-            </div>
-
-            <div
-                class="coupon-code"
-                id="couponCode">
-            </div>
-
-        </div>
-
-
-        <!-- DEPOSIT -->
-
-        <div
-            class="deposit"
-            id="deposit">
-
-            <div class="deposit-title">
-                Выбери количество звёзд
-            </div>
-
-            <div class="amounts">
-
-                <button
-                    class="amount"
-                    onclick="buyStars(50)">
-                    ⭐ 50
-                </button>
-
-                <button
-                    class="amount"
-                    onclick="buyStars(100)">
-                    ⭐ 100
-                </button>
-
-                <button
-                    class="amount"
-                    onclick="buyStars(250)">
-                    ⭐ 250
-                </button>
-
-                <button
-                    class="amount"
-                    onclick="buyStars(500)">
-                    ⭐ 500
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- MENU -->
-
-    <div class="menu">
-
-        <div class="menu-button">
-            ⭐ Баланс
-        </div>
-
-        <div class="menu-button">
-            🎁 Купоны
-        </div>
-
-        <div class="menu-button">
-            👤 Профиль
-        </div>
-
-        <div class="menu-button">
-            ℹ️ Помощь
-        </div>
-
-    </div>
-
-
-    <div class="footer">
-        © Звёзды от Трушки
     </div>
 
 </div>
@@ -434,101 +652,172 @@
 
 <script>
 
-    const tg = window.Telegram.WebApp;
+const tg = window.Telegram.WebApp;
 
-    tg.ready();
-    tg.expand();
+tg.ready();
+tg.expand();
 
 
-    /* USER */
+/*
+    ПРЕДМЕТЫ КЕЙСА
 
-    if (
-        tg.initDataUnsafe &&
-        tg.initDataUnsafe.user
-    ) {
+    Сумма процентов = 100%
+*/
 
-        const user =
-            tg.initDataUnsafe.user;
+const items = [
 
-        document.getElementById("username")
-            .innerText =
-            user.first_name || "Пользователь";
+    {
+        name: "Глитч Пепе",
+        chance: 1,
+        price: 3500000000000,
+        priceText: "3,500,000,000,000 ⭐",
+        icon: "👾"
+    },
+
+    {
+        name: "Пепе Трушка",
+        chance: 5,
+        price: 1000000000000,
+        priceText: "1,000,000,000,000 ⭐",
+        icon: "🐸"
+    },
+
+    {
+        name: "Статуэтка Трушки",
+        chance: 24,
+        price: 250000000000,
+        priceText: "250,000,000,000 ⭐",
+        icon: "🗿"
+    },
+
+    {
+        name: "Пепе Дроздик",
+        chance: 70,
+        price: 5000000000,
+        priceText: "5,000,000,000 ⭐",
+        icon: "🐸"
     }
 
+];
 
-    /* COUPON */
 
-    function getCoupon() {
+const openButton = document.getElementById("openButton");
+const spinScreen = document.getElementById("spinScreen");
+const resultScreen = document.getElementById("resultScreen");
+const caseImage = document.getElementById("caseImage");
 
-        const chars =
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-        let code = "";
+let opening = false;
 
-        for (let i = 0; i < 8; i++) {
 
-            code += chars[
-                Math.floor(
-                    Math.random() * chars.length
-                )
-            ];
+/*
+    ВЫБОР ПРЕДМЕТА ПО ШАНСУ
+*/
 
+function getRandomItem() {
+
+    const random = Math.random() * 100;
+
+    let current = 0;
+
+    for (const item of items) {
+
+        current += item.chance;
+
+        if (random < current) {
+            return item;
         }
 
-        const coupon =
-            "TRUSHKA-" + code;
-
-        document.getElementById("couponCode")
-            .innerText = coupon;
-
-        document.getElementById("coupon")
-            .style.display = "block";
-
-        if (tg.HapticFeedback) {
-
-            tg.HapticFeedback
-                .notificationOccurred("success");
-
-        }
     }
 
+    return items[items.length - 1];
+}
 
-    /* DEPOSIT MENU */
 
-    function showDeposit() {
+/*
+    ОТКРЫТИЕ КЕЙСА
+*/
 
-        const deposit =
-            document.getElementById("deposit");
+function openCase() {
 
-        if (deposit.style.display === "block") {
+    if (opening) return;
 
-            deposit.style.display = "none";
+    opening = true;
 
-        } else {
+    openButton.disabled = true;
 
-            deposit.style.display = "block";
+    caseImage.classList.add("opening");
 
-        }
-    }
+    spinScreen.classList.add("show");
 
 
     /*
-       PAYMENT
-
-       Здесь пока открывается сообщение-заглушка.
-       Настоящий Telegram Stars invoice
-       подключим через бота.
+        Анимация длится 3.5 секунды
     */
 
-    function buyStars(amount) {
+    setTimeout(() => {
 
-        tg.showAlert(
-            "Пополнение на ⭐ " +
-            amount +
-            " Stars подключим через Telegram-бота."
+        const item = getRandomItem();
+
+        spinScreen.classList.remove("show");
+
+        caseImage.classList.remove("opening");
+
+        showResult(item);
+
+        opening = false;
+
+        openButton.disabled = false;
+
+    }, 3500);
+
+}
+
+
+/*
+    ПОКАЗАТЬ РЕЗУЛЬТАТ
+*/
+
+function showResult(item) {
+
+    document.getElementById("resultIcon").textContent =
+        item.icon;
+
+    document.getElementById("resultName").textContent =
+        item.name;
+
+    document.getElementById("resultChance").textContent =
+        "Шанс: " + item.chance + "%";
+
+    document.getElementById("resultValue").textContent =
+        item.priceText;
+
+    resultScreen.classList.add("show");
+
+    /*
+        Вибрация Telegram
+    */
+
+    if (tg.HapticFeedback) {
+
+        tg.HapticFeedback.notificationOccurred(
+            "success"
         );
 
     }
+
+}
+
+
+/*
+    ЗАКРЫТЬ РЕЗУЛЬТАТ
+*/
+
+function closeResult() {
+
+    resultScreen.classList.remove("show");
+
+}
 
 </script>
 
